@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build client image
+        run: docker build ./client -t mydockerhubusername/client:${{ github.sha }}
+
+      - name: Push client image to DockerHub
+        run: docker push mydockerhubusername/client:${{ github.sha }}
+
+      - name: Build server image
+        run: docker build ./server -t mydockerhubusername/server:${{ github.sha }}
+
+      - name: Push server image to DockerHub
+        run: docker push mydockerhubusername/server:${{ github.sha }}
