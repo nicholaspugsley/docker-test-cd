@@ -17,6 +17,13 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+          # existing steps...
+      - name: Build nginx image
+        run: docker build ./nginx -t ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:${{ github.sha }}
+
+      - name: Push nginx image to DockerHub
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:${{ github.sha }}
+
       - name: Build client image
         run: docker build ./client -t nkp217/client:${{ github.sha }}
 
