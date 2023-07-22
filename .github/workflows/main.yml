@@ -18,13 +18,13 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Build client image
-        run: docker build ./client -t mydockerhubusername/client:${{ github.sha }}
+        run: docker build ./client -t nkp217/client:${{ github.sha }}
 
       - name: Push client image to DockerHub
-        run: docker push mydockerhubusername/client:${{ github.sha }}
+        run: docker push nkp217/client:${{ github.sha }}
 
       - name: Build server image
-        run: docker build ./server -t mydockerhubusername/server:${{ github.sha }}
+        run: docker build ./server -t nkp217/server:${{ github.sha }}
 
       - name: Push server image to DockerHub
-        run: docker push mydockerhubusername/server:${{ github.sha }}
+        run: docker push nkp217/server:${{ github.sha }}

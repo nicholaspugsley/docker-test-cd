@@ -1,12 +1,12 @@
 version: "3"
 services:
   client:
-    build: ./client/
+    build: nkp217/client:latest
     expose:
       - "3000"
 
   server:
-    build: ./server/
+    build: nkp217/server:latest
     expose:
       - "8000"
 
