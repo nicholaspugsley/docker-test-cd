@@ -25,13 +25,13 @@ jobs:
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/nginx:${{ github.sha }}
 
       - name: Build client image
-        run: docker build ./client -t nkp217/client:${{ github.sha }}
+        run: docker build ./client -t ${{ secrets.DOCKER_HUB_USERNAME }}/client:${{ github.sha }}
 
       - name: Push client image to DockerHub
-        run: docker push nkp217/client:${{ github.sha }}
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/client:${{ github.sha }}
 
       - name: Build server image
-        run: docker build ./server -t nkp217/server:${{ github.sha }}
+        run: docker build ./server -t ${{ secrets.DOCKER_HUB_USERNAME }}/server:${{ github.sha }}
 
       - name: Push server image to DockerHub
-        run: docker push nkp217/server:${{ github.sha }}
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/server:${{ github.sha }}
